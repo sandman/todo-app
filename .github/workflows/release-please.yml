@@ -24,12 +24,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
         
       - name: Run Release Please
         uses: googleapis/release-please-action@v4
+        env:
+          DEBUG: "*"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config-file: release-please-config.json
+          config-file: .release-please-config.json
           manifest-file: .release-please-manifest.json
           clean: true
           command: manifest
+          default-branch: main
